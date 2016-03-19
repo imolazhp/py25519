@@ -6,5 +6,5 @@ fi
 cd $(dirname $0)/../c/
 make libs
 cd ..
-\cp -rf c/. ../$1/c/.
+\cp -rf c/. ../$1/.
 chmod -x $0 1>/dev/null 2>&1

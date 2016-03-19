@@ -51,7 +51,7 @@ known_steps = [
     # 'install',
     # 'install_scripts',
 ]
-trace_triggers = True
+trace_triggers = False
 
 # setup config, so that user only needs to add cmdlist and optionally
 # set show_output, show_err, ignore_err for different triggers
