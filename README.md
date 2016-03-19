@@ -6,6 +6,7 @@ Source:
 
 The C source is by Daniel J. Bernstein et al.
 The authors have placed this code in the public domain. See the source pages for notes on patents.
+The C source from the above sources is included here UNCHANGED under the 'c' directory.
 
 This repository includes:
 - ed25519: high-speed high-security signatures
