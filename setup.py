@@ -131,7 +131,7 @@ build_c_dir = 'build/lib.%s-%s/%s/%s' % (
 build_sh = os.path.join(name, 'build/build.sh')
 
 setupext.config['build_ext']['pre']['cmdlist'] = [
-    build_sh,
+    build_sh + ' ' + build_c_dir,
 ]
 
 '''
