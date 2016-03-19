@@ -44,7 +44,7 @@ PACKAGE DATA
 '''
 # You _SHOULD_ set these
 name = 'py25519'
-version = '0.12'
+version = '0.13'
 description = name
 install_requires = [
     'cffi_utils',
