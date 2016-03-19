@@ -7,6 +7,4 @@ cd $(dirname $0)/../c/
 make libs
 cd ..
 \cp -rf c/. ../$1/c/.
-
-make distclean
 chmod -x $0 1>/dev/null 2>&1

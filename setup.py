@@ -80,17 +80,17 @@ C source files are in a directory under the python module, so that the
 C files are also installed with the python module
 ==============================================================================
 '''
-c_dir = 'c/source'
+c_dir = 'c'
 libname = 'libcurve25519'
 c_src_files = [
-    'curve25519_dh.c',
-    'curve25519_mehdi.c',
-    'curve25519_order.c',
-    'curve25519_utils.c',
-    'custom_blind.c',
-    'ed25519_sign.c',
-    'ed25519_verify.c',
-    'sha512.c',
+    'source/curve25519_dh.c',
+    'source/curve25519_mehdi.c',
+    'source/curve25519_order.c',
+    'source/curve25519_utils.c',
+    'source/custom_blind.c',
+    'source/ed25519_sign.c',
+    'source/ed25519_verify.c',
+    'source/sha512.c',
 ]
 libpath = os.path.join(name, libname)
 c_src_list = [os.path.join(name, c_dir, x) for x in c_src_files]
