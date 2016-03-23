@@ -3,7 +3,7 @@
     The files under py25519/c  are from mehdi sotoodeh and are copied
     unchanged from https://github.com/msotoodeh/curve25519.
 
-    The files under py25519/c are licensed under the MIT LICENSE (see 
+    The files under py25519/c are licensed under the MIT LICENSE (see
     license.txt file under py25519/c).
 
     All remaining files in this package are licensed under the GNU
