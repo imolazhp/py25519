@@ -44,7 +44,9 @@ PACKAGE DATA
 '''
 # You _SHOULD_ set these
 name = 'py25519'
-version = '0.13'
+version = open('ver.txt', 'r').read().splitlines()[0]
+url = 'https://github.com/sundarnagarajan/py25519'
+download_url = '%s/tree/%s' % (url, version)
 description = name
 install_requires = [
     'cffi_utils',
@@ -54,8 +56,6 @@ license = 'License :: OSI Approved :: MIT License'
 
 # The following are optional
 long_description = open('README.rst').read()
-url = 'https://github.com/sundarnagarajan/py25519'
-download_url = 'https://github.com/sundarnagarajan/py25519.git'
 author = 'Sundar Nagarajan'
 # author_email = ''
 maintainer = author
