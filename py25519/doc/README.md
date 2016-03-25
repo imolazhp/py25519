@@ -1,13 +1,10 @@
 
 # py25519
-
-
 Python wrapper around curve25519 by mehdi sotoodeh.
 The files under py25519/c  are from mehdi sotoodeh and are copied
 unchanged from https://github.com/msotoodeh/curve25519.
 
 # LICENSE
-
 The files under py25519/c are licensed under the MIT LICENSE (see
 license.txt file under py25519/c).
 
@@ -19,7 +16,6 @@ License version 3.
 
 
 # Class Documentation
-
 ~~~~ {.sourceCode .python}
 	class Key25519(__builtin__.object)
 	    __init__(self, secretkey=None, verifyingkey=None, pubkey=None)
@@ -72,7 +68,6 @@ License version 3.
 
 
 # Simple test
-
 see py25519.test.py
 
 ~~~~ {.sourceCode .python}
