@@ -1,22 +1,21 @@
 py25519
 =======
 
-| Python wrapper around curve25519 by mehdi sotoodeh.
-| The files under py25519/c are from mehdi sotoodeh and are copied
-| unchanged from https://github.com/msotoodeh/curve25519.
+Python wrapper around curve25519 by mehdi sotoodeh. The files under
+py25519/c are from mehdi sotoodeh and are copied unchanged from
+https://github.com/msotoodeh/curve25519.
 
 LICENSE
 =======
 
-| The files under py25519/c are licensed under the MIT LICENSE (see
-| license.txt file under py25519/c).
+The files under py25519/c are licensed under the MIT LICENSE (see
+license.txt file under py25519/c).
 
-| All remaining files in this package are licensed under the GNU
-| General Public License version 3 or (at your option) any later
-version.
+All remaining files in this package are licensed under the GNU General
+Public License version 3 or (at your option) any later version.
 
-| See the file LICENSE-GPLv3.txt for details of the GNU General Public
-| License version 3.
+See the file LICENSE-GPLv3.txt for details of the GNU General Public
+License version 3.
 
 Class Documentation
 ===================
