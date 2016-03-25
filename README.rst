@@ -1,28 +1,31 @@
 py25519
 -------
 
-Python wrapper around curve25519 by mehdi sotoodeh. The files under
-py25519/c are from mehdi sotoodeh and are copied unchanged from
-https://github.com/msotoodeh/curve25519.
+| Python wrapper around curve25519 by mehdi sotoodeh.
+| The files under py25519/c are from mehdi sotoodeh and are copied
+| unchanged from https://github.com/msotoodeh/curve25519.
 
 LICENSE
 -------
 
-The files under py25519/c are licensed under the MIT LICENSE (see
-license.txt file under py25519/c).
+| The files under py25519/c are licensed under the MIT LICENSE (see
+| license.txt file under py25519/c).
 
-All remaining files in this package are licensed under the GNU General
-Public License version 3 or (at your option) any later version.
+| All remaining files in this package are licensed under the GNU
+| General Public License version 3 or (at your option) any later
+version.
 
-See the file LICENSE-GPLv3.txt for details of the GNU General Public
-License version 3.
+| See the file LICENSE-GPLv3.txt for details of the GNU General Public
+| License version 3.
 
 Class Documentation
 -------------------
 
-class Key25519(\ **builtin**.object) **init**\ (self, secretkey=None,
-verifyingkey=None, pubkey=None) secretkey-->bytes[32]
-verifyingkey-->bytes[32] pubkey-->bytes[32]
+| class Key25519(\ **builtin**.object)
+|  **init**\ (self, secretkey=None, verifyingkey=None, pubkey=None)
+|  secretkey-->bytes[32]
+|  verifyingkey-->bytes[32]
+|  pubkey-->bytes[32]
 
 ::
 
@@ -33,11 +36,14 @@ verifyingkey-->bytes[32] pubkey-->bytes[32]
        
        Storing and reusing the secretkey is a way to recreate your key pair
 
-get\_ecdh\_key(self, other) other-->Key25519 instance
+| get\_ecdh\_key(self, other)
+|  other-->Key25519 instance
 
-public\_key(self) Returns a PublicKey version of this object
+| public\_key(self)
+|  Returns a PublicKey version of this object
 
-selftest(self) Returns-->boolean
+| selftest(self)
+|  Returns-->boolean
 
 serialize(self)
 
@@ -45,19 +51,20 @@ sign = wrapped(\*args, \*\*kwargs)
 
 verify = wrapped(\*args, \*\*kwargs)
 
-+-----------------------------------------------------------------------+
-| Properties (data descriptors)                                         |
-+-----------------------------------------------------------------------+
-| pubkey                                                                |
-+-----------------------------------------------------------------------+
-| secretkey                                                             |
-+-----------------------------------------------------------------------+
-| signingkey                                                            |
-+-----------------------------------------------------------------------+
-| verifyingkey                                                          |
-+-----------------------------------------------------------------------+
-| ple test (see py25519.test.py                                         |
-+-----------------------------------------------------------------------+
+--------------
+
+Properties (data descriptors)
+
+pubkey
+
+secretkey
+
+signingkey
+
+verifyingkey
+
+Simple test (see py25519.test.py
+--------------------------------
 
 ::
 

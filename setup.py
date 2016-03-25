@@ -44,7 +44,7 @@ PACKAGE DATA
 '''
 # You _SHOULD_ set these
 name = 'py25519'
-version = open('ver.txt', 'r').read().splitlines()[0]
+version = '0.13.3'   # oldver: open('ver.txt', 'r').read().splitlines()[0]
 url = 'https://github.com/sundarnagarajan/py25519'
 download_url = '%s/tree/%s' % (url, version)
 description = name
