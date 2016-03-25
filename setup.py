@@ -44,7 +44,7 @@ PACKAGE DATA
 '''
 # You _SHOULD_ set these
 name = 'py25519'
-version = '0.13.5'   # oldver: '0.13.4'
+version = '0.13.6'   # oldver: '0.13.5'
 url = 'https://github.com/sundarnagarajan/py25519'
 download_url = '%s/tree/%s' % (url, version)
 description = name
