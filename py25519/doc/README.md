@@ -1,14 +1,12 @@
 
-py25519
--------
+# py25519
 
 
 Python wrapper around curve25519 by mehdi sotoodeh.
 The files under py25519/c  are from mehdi sotoodeh and are copied
 unchanged from https://github.com/msotoodeh/curve25519.
 
-LICENSE
--------
+# LICENSE
 
 The files under py25519/c are licensed under the MIT LICENSE (see
 license.txt file under py25519/c).
@@ -20,52 +18,64 @@ See the file LICENSE-GPLv3.txt for details of the GNU General Public
 License version 3.
 
 
-Class Documentation
--------------------
+# Class Documentation
 
-class Key25519(__builtin__.object)
-   __init__(self, secretkey=None, verifyingkey=None, pubkey=None)
-       secretkey-->bytes[32]
-       verifyingkey-->bytes[32]
-       pubkey-->bytes[32]
+~~~~ {.sourceCode .python}
+	class Key25519(__builtin__.object)
+	    __init__(self, secretkey=None, verifyingkey=None, pubkey=None)
+		    '''
+	        secretkey-->bytes[32]
+ 	        verifyingkey-->bytes[32]
+	        pubkey-->bytes[32]
 
-       A PublicKey version of the object will have ONLY verifyingkey
-       and pubkey and signingkey will be None
-       A PrivateKey version of the object will have secretkey set
-       and verifyingkey and pubkey are ignored and derived from secretkey
-       
-       Storing and reusing the secretkey is a way to recreate your key pair
-   
-   get_ecdh_key(self, other)
-       other-->Key25519 instance
-   
-   public_key(self)
-       Returns a PublicKey version of this object
-   
-   selftest(self)
-       Returns-->boolean
-   
-   serialize(self)
-   
-   sign = wrapped(*args, **kwargs)
-   
-   verify = wrapped(*args, **kwargs)
-   
-   ----------------------------------------------------------------------
-   Properties (data descriptors)
-   
-   pubkey
-   
-   secretkey
-   
-   signingkey
-   
-   verifyingkey
+	        A PublicKey version of the object will have ONLY verifyingkey
+	        and pubkey and signingkey will be None
+	        A PrivateKey version of the object will have secretkey set
+	        and verifyingkey and pubkey are ignored and derived from secretkey
+	       
+	        Storing and reusing the secretkey is a way to recreate your key pair
+		    '''
+	   
+	    get_ecdh_key(self, other)
+		    '''
+	        other-->Key25519 instance
+		    '''
+	   
+	    public_key(self)
+		    '''
+	        Returns a PublicKey version of this object
+		    '''
+	   
+	    selftest(self)
+		    '''
+	        Returns-->boolean
+		    '''
+	   
+	    serialize(self)
+	   
+	    sign = wrapped(*args, **kwargs)
+	   
+	    verify = wrapped(*args, **kwargs)
+	   
+	    # ---------------------------------------------------------------------
+	    # Properties (data descriptors)
+	    # ---------------------------------------------------------------------
+	   
+	    pubkey
+	   
+	    secretkey
+	   
+	    signingkey
+	   
+	    verifyingkey
+~~~~
 
 
-Simple test (see py25519.test.py
---------------------------------
+# Simple test
 
+see py25519.test.py
+
+~~~~ {.sourceCode .python}
     from py25519 import Key25519
 
     c = Key25519()
@@ -100,3 +110,4 @@ Simple test (see py25519.test.py
     print('ecdh equal: ', ecdh1 == ecdh2)
     ecdh3 = e.get_ecdh_key(c.public_key())
     print('ecdh equal again: ', ecdh1 == ecdh3)
+~~~~
