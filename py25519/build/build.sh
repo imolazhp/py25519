@@ -4,7 +4,9 @@ if [ -z "$1" ]; then
 	exit 0
 fi
 cd $(dirname $0)/../c/
-make libs
+export PLATFORM=$(gcc -dumpmachine | cut -d- -f1)
+make -C custom
+make -C source
 cd ..
 \cp -rf c/. ../$1/.
 chmod -x $0 1>/dev/null 2>&1
