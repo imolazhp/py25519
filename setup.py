@@ -75,8 +75,8 @@ zip_safe = True
 '''
 ==============================================================================
 C EXTENSION DETAILS
-C source files are in a directory under the python module, so that the
-C files are also installed with the python module
+C source files are NOT under the python module, so that the
+C files are NOT installed with the python module
 ==============================================================================
 '''
 c_dir = 'c'
@@ -92,14 +92,16 @@ c_src_files = [
     'source/sha512.c',
 ]
 libpath = os.path.join(name, libname)
-c_src_list = [os.path.join(name, c_dir, x) for x in c_src_files]
-ext_modules = [
-    Extension(
-        name=libpath,
-        sources=c_src_list,
-        include_dirs=[c_dir],
-    )
-]
+c_src_list = [os.path.join(c_dir, x) for x in c_src_files]
+# Do not compile Extension during build phase - unnecessary
+if len(sys.argv) > 1 and sys.argv[1] != 'build':
+    ext_modules = [
+        Extension(
+            name=libpath,
+            sources=c_src_list,
+            include_dirs=[c_dir],
+        )
+    ]
 
 
 '''
@@ -111,7 +113,6 @@ ADDITIONAL DATA FILES
 
 data_dirs = [
     'doc',
-    c_dir,
     'build',
 ]
 
@@ -121,6 +122,8 @@ data_dirs = [
 CUSTOM STEPS
 ==============================================================================
 '''
+
+
 build_c_dir = 'build/lib.%s-%s/%s/%s' % (
     get_platform(),
     '%d.%d' % sys.version_info[:2],
@@ -130,7 +133,7 @@ build_c_dir = 'build/lib.%s-%s/%s/%s' % (
 build_sh = os.path.join(name, 'build/build.sh')
 
 setupext.config['build_ext']['pre']['cmdlist'] = [
-    build_sh + ' ' + build_c_dir,
+    build_sh + ' ' + c_dir,
 ]
 
 '''
