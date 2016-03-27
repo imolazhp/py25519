@@ -30,8 +30,11 @@
 import sys
 import os
 from setuptools import setup, find_packages, Extension
+# Import setupext ONLY if you want custom triggers
+# If you only use prep_cmd, you only need to include setupext in the package
+# import setupext
 # Import setupext IFF you use prep_cmd or want custom triggers
-import setupext
+# import setupext
 
 
 os.chdir(os.path.dirname(sys.argv[0]) or ".")
@@ -152,6 +155,7 @@ def prepare_c_source(cmd):
     '''
     cmd-->str: command with arguments
     '''
+    import setupext
     setupext.config['build_ext']['pre']['cmdlist'] = [cmd]
     return setupext.get_cmdclass()
 
