@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Py25519 by sundarnagarajan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Py25519</h1>
+      <h2 class="project-tagline">Python wrappers around  Ed25519: high-speed high-security signatures by Daniel J. Bernstein</h2>
+      <a href="https://github.com/sundarnagarajan/py25519" class="btn">View on GitHub</a>
+      <a href="https://github.com/sundarnagarajan/py25519/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/sundarnagarajan/py25519/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="py25519" class="anchor" href="#py25519" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>py25519</h1>
+
+<p>Python wrapper around curve25519 by mehdi sotoodeh.  The files under py25519/c  are from mehdi sotoodeh and are copied unchanged from <a href="https://github.com/msotoodeh/curve25519">https://github.com/msotoodeh/curve25519</a>.</p>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LICENSE</h1>
+
+<p>The files under py25519/c are licensed under the MIT LICENSE (see license.txt file under py25519/c).</p>
+
+<p>All remaining files in this package are licensed under the GNU General Public License version 3 or (at your option) any later version.</p>
+
+<p>See the file LICENSE-GPLv3.txt for details of the GNU General Public License version 3.</p>
+
+<h1>
+<a id="class-documentation" class="anchor" href="#class-documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Class Documentation</h1>
+
+<pre lang="sourceCode"><code>    class Key25519(__builtin__.object)
+        __init__(self, secretkey=None, verifyingkey=None, pubkey=None)
+            '''
+            secretkey--&gt;bytes[32]
+            verifyingkey--&gt;bytes[32]
+            pubkey--&gt;bytes[32]
+
+            A PublicKey version of the object will have ONLY verifyingkey
+            and pubkey and signingkey will be None
+            A PrivateKey version of the object will have secretkey set
+            and verifyingkey and pubkey are ignored and derived from secretkey
+
+            Storing and reusing the secretkey is a way to recreate your key pair
+            '''
+
+        get_ecdh_key(self, other)
+            '''
+            other--&gt;Key25519 instance
+            '''
+
+        public_key(self)
+            '''
+            Returns a PublicKey version of this object
+            '''
+
+        selftest(self)
+            '''
+            Returns--&gt;boolean
+            '''
+
+        serialize(self)
+
+        sign = wrapped(*args, **kwargs)
+
+        verify = wrapped(*args, **kwargs)
+
+        # ---------------------------------------------------------------------
+        # Properties (data descriptors)
+        # ---------------------------------------------------------------------
+
+        pubkey
+
+        secretkey
+
+        signingkey
+
+        verifyingkey
+</code></pre>
+
+<h1>
+<a id="simple-test" class="anchor" href="#simple-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Simple test</h1>
+
+<p>see py25519.test.py</p>
+
+<pre lang="sourceCode"><code>    from py25519 import Key25519
+
+    c = Key25519()
+    print('secretkey: ', c.secretkey)
+    print('signingkey: ', c.signingkey)
+    print('verifyingkey: ', c.verifyingkey)
+
+    msg = 'Hello world'
+    badmsg = msg + '1'
+    sig = c.sign(msg)
+    badsig = c.sign(badmsg)
+    print('good verify: ', c.verify(sig, msg))
+    print('badmsg verify: ', c.verify(sig, badmsg))
+    print('badsig verify: ', c.verify(badsig, msg))
+
+    d = Key25519(secretkey=c.secretkey)
+    print('----- d is a copy of c -----')
+    print('d.verify: ', d.verify(sig, msg))
+    print('c == d:', c == d)
+    print('public(c) == public(d):', c.public_key() == d.public_key())
+    print('c == public(d):', c == d.public_key())
+
+    print('----- e is a new different key -----')
+    e = Key25519()
+    print('e.verify: ', e.verify(sig, msg))
+    print('c == e:', c == e)
+    print('public(c) == public(e):', c.public_key() == e.public_key())
+
+    print('----- Test ECDH shared key -----')
+    ecdh1 = c.get_ecdh_key(e.public_key())
+    ecdh2 = e.get_ecdh_key(c.public_key())
+    print('ecdh equal: ', ecdh1 == ecdh2)
+    ecdh3 = e.get_ecdh_key(c.public_key())
+    print('ecdh equal again: ', ecdh1 == ecdh3)
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/sundarnagarajan/py25519">Py25519</a> is maintained by <a href="https://github.com/sundarnagarajan">sundarnagarajan</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
