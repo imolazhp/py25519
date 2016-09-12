@@ -27,7 +27,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
-from cffi_utils.utils2to3 import inputToBytes
+from cffi_utils.py2to3 import inputToBytes
 from cffi_utils.sowrapper import get_lib_ffi_resource
 import os
 
