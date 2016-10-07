@@ -129,46 +129,6 @@ class Key25519(object):
         lib.curve25519_dh_CalculatePublicKey_fast(
             self.__pubkey, tmp_secretkey)
         del tmp_secretkey
-        self.selftest()
-
-    def selftest(self):
-        '''
-        Returns-->boolean
-        '''
-        msg = 'ABCD'
-
-        # Key generation
-        sk1 = Key25519()
-        sk2 = Key25519()
-
-        # Extract public_key
-        pk1 = sk1.public_key()
-        pk2 = sk2.public_key()
-
-        if (pk1.secretkey, pk1.signingkey) != (None, None):
-            raise ValueError('Public key contains secretkey or signingkey')
-        if (pk2.secretkey, pk2.signingkey) != (None, None):
-            raise ValueError('Public key contains secretkey or signingkey')
-
-        # Sign and verify - positive test
-        sig = sk1.sign(msg)
-        if not pk1.verify(sig, msg):
-            raise ValueError('Signature could not be verified')
-        # Sign and verify - negative test
-        if pk2.verify(sig, msg):
-            raise ValueError('Signature verified unexpectedly')
-
-        # ECDH key - positive test
-        ecdh1 = sk1.get_ecdh_key(pk2)
-        ecdh2 = sk2.get_ecdh_key(pk1)
-        if (ecdh1 != ecdh2):
-            raise ValueError('ECDH shared keys are different!')
-        # ECDH key negative test
-        sk3 = Key25519()
-        ecdh3 = sk3.get_ecdh_key(pk1)
-        if (ecdh1 == ecdh3 or ecdh2 == ecdh3):
-            raise ValueError('ECDH keys unexpectedly equal')
-        sys.stderr.write('All tests passed\n')
 
     @inputToBytes
     def sign(self, msg):
@@ -250,3 +210,48 @@ class Key25519(object):
         a = [getattr(self, x, None) for x in attrs]
         b = [getattr(other, x, None) for x in attrs]
         return a == b
+
+
+def selftest(self):
+    '''
+    Returns-->boolean
+    '''
+    msg = 'ABCD'
+
+    # Key generation
+    sk1 = Key25519()
+    sk2 = Key25519()
+
+    # Extract public_key
+    pk1 = sk1.public_key()
+    pk2 = sk2.public_key()
+
+    if (pk1.secretkey, pk1.signingkey) != (None, None):
+        raise ValueError('Public key contains secretkey or signingkey')
+    if (pk2.secretkey, pk2.signingkey) != (None, None):
+        raise ValueError('Public key contains secretkey or signingkey')
+
+    # Sign and verify - positive test
+    sig = sk1.sign(msg)
+    if not pk1.verify(sig, msg):
+        raise ValueError('Signature could not be verified')
+    # Sign and verify - negative test
+    if pk2.verify(sig, msg):
+        raise ValueError('Signature verified unexpectedly')
+
+    # ECDH key - positive test
+    ecdh1 = sk1.get_ecdh_key(pk2)
+    ecdh2 = sk2.get_ecdh_key(pk1)
+    if (ecdh1 != ecdh2):
+        raise ValueError('ECDH shared keys are different!')
+    # ECDH key negative test
+    sk3 = Key25519()
+    ecdh3 = sk3.get_ecdh_key(pk1)
+    if (ecdh1 == ecdh3 or ecdh2 == ecdh3):
+        raise ValueError('ECDH keys unexpectedly equal')
+    sys.stderr.write('%s: %s\n' % (
+        os.path.basename(__file__),
+        'All tests passed'
+    ))
+
+selftest()
