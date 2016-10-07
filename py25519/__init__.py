@@ -30,6 +30,7 @@
 from cffi_utils.py2to3 import inputToBytes
 from cffi_utils.sowrapper import get_lib_ffi_resource
 import os
+import sys
 
 
 c_hdr = '''
@@ -135,18 +136,39 @@ class Key25519(object):
         Returns-->boolean
         '''
         msg = 'ABCD'
-        # If it is a PublicKey version, we need a PrivateKey to test against
-        if self.signingkey is None:
-            pvtkey = Key25519()
-        else:
-            pvtkey = self
-        try:
-            sig = pvtkey.sign(msg)
-            if not self.verify(sig, msg):
-                raise ValueError('Invalid values for key')
-            pvtkey.get_ecdh_key(self.public_key())
-        except:
-            raise ValueError('Invalid values for key')
+
+        # Key generation
+        sk1 = Key25519()
+        sk2 = Key25519()
+
+        # Extract public_key
+        pk1 = sk1.public_key()
+        pk2 = sk2.public_key()
+
+        if (pk1.secretkey, pk1.signingkey) != (None, None):
+            raise ValueError('Public key contains secretkey or signingkey')
+        if (pk2.secretkey, pk2.signingkey) != (None, None):
+            raise ValueError('Public key contains secretkey or signingkey')
+
+        # Sign and verify - positive test
+        sig = sk1.sign(msg)
+        if not pk1.verify(sig, msg):
+            raise ValueError('Signature could not be verified')
+        # Sign and verify - negative test
+        if pk2.verify(sig, msg):
+            raise ValueError('Signature verified unexpectedly')
+
+        # ECDH key - positive test
+        ecdh1 = sk1.get_ecdh_key(pk2)
+        ecdh2 = sk2.get_ecdh_key(pk1)
+        if (ecdh1 != ecdh2):
+            raise ValueError('ECDH shared keys are different!')
+        # ECDH key negative test
+        sk3 = Key25519()
+        ecdh3 = sk3.get_ecdh_key(pk1)
+        if (ecdh1 == ecdh3 or ecdh2 == ecdh3):
+            raise ValueError('ECDH keys unexpectedly equal')
+        sys.stderr.write('All tests passed\n')
 
     @inputToBytes
     def sign(self, msg):
