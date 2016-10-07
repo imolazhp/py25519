@@ -103,6 +103,7 @@ class Key25519(object):
         if secretkey is None and (verifyingkey is not None and
                                   pubkey is not None):
             self.__secretkey = None
+            self.__signingkey = None
             self.__verifyingkey = ffi.new(C_VERIFYINGKEY, verifyingkey)
             self.__pubkey = ffi.new(C_PUBLICKEY, pubkey)
             return
