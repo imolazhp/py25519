@@ -250,7 +250,7 @@ def selftest():
     if (ecdh1 == ecdh3 or ecdh2 == ecdh3):
         raise ValueError('ECDH keys unexpectedly equal')
     sys.stderr.write('%s: %s\n' % (
-        os.path.basename(__file__),
+        __name__,
         'All tests passed'
     ))
 
