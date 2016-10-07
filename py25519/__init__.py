@@ -30,7 +30,6 @@
 from cffi_utils.py2to3 import inputToBytes
 from cffi_utils.sowrapper import get_lib_ffi_resource
 import os
-import sys
 
 
 c_hdr = '''
@@ -249,9 +248,5 @@ def selftest():
     ecdh3 = sk3.get_ecdh_key(pk1)
     if (ecdh1 == ecdh3 or ecdh2 == ecdh3):
         raise ValueError('ECDH keys unexpectedly equal')
-    sys.stderr.write('%s: %s\n' % (
-        __name__,
-        'All tests passed'
-    ))
 
 selftest()
