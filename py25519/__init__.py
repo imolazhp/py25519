@@ -212,7 +212,7 @@ class Key25519(object):
         return a == b
 
 
-def selftest(self):
+def selftest():
     '''
     Returns-->boolean
     '''
